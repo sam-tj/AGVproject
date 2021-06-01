@@ -33,7 +33,7 @@
                     slds-text-heading_large
                   "
                 >
-                  <span>Mover Dashboard</span>
+                  <span id="mainTitle">Mover Dashboard</span>
                 </h2>
               </div>
               <div class="slds-no-flex">
@@ -63,7 +63,7 @@
                     "
                     id="progress-bar-label-id-6"
                   >
-                    <span>Battery Percentage 🔋</span>
+                    <span id="batteryTitle">Battery Percentage 🔋</span>
                     <span aria-hidden="true">
                       <strong></strong>
                     </span>
@@ -91,6 +91,12 @@
                   "
                 >
                   <div
+                    id="currentTimeTitle"
+                    class="slds-text-align_center slds-text-heading_small"
+                  >
+                    Current Time
+                  </div>
+                  <div
                     id="time"
                     class="slds-text-align_center slds-text-heading_small"
                   ></div>
@@ -105,7 +111,10 @@
                   "
                 >
                   <div class="slds-form-element">
-                    <label class="slds-form-element__label" for="select-01"
+                    <label
+                      id="workTimeTitle"
+                      class="slds-form-element__label"
+                      for="select-01"
                       >Work Time</label
                     >
                     <div class="slds-form-element__control">
@@ -144,6 +153,7 @@
                     <div class="slds-form-element" id="powerSwitchButton">
                       <label class="slds-checkbox_toggle slds-grid">
                         <span
+                          id="powerTitle"
                           class="slds-form-element__label slds-m-bottom_none"
                           >Power</span
                         >
@@ -160,8 +170,14 @@
                           aria-live="assertive"
                         >
                           <span class="slds-checkbox_faux"></span>
-                          <span class="slds-checkbox_on">On</span>
-                          <span class="slds-checkbox_off">Off</span>
+                          <span class="slds-checkbox_on" id="powerStateOnTitle"
+                            >On</span
+                          >
+                          <span
+                            class="slds-checkbox_off"
+                            id="powerStateOffTitle"
+                            >Off</span
+                          >
                         </span>
                       </label>
                     </div>
@@ -200,6 +216,7 @@
                   "
                 >
                   <button
+                    id="emergencyStopTitle"
                     class="
                       slds-button slds-button_destructive slds-button_stretch
                     "
@@ -238,7 +255,10 @@
             id="modal-content-id-1"
           >
             <a href="firmware.html">
-              <button class="slds-button slds-button_brand">
+              <button
+                class="slds-button slds-button_brand"
+                id="updateSystemButtonTitle"
+              >
                 Update System
               </button>
             </a>
@@ -246,14 +266,19 @@
             <button
               class="slds-button slds-button_brand"
               onclick="showLanguageModal()"
+              id="languageButtonTitle"
             >
               Languages
             </button>
             <div class="slds-p-vertical_medium"></div>
-            <p>More coming soon...</p>
+            <p id="moreComingSoonTitle">More coming soon...</p>
           </div>
           <footer class="slds-modal__footer">
-            <button class="slds-button slds-button_brand" onclick="showModal()">
+            <button
+              class="slds-button slds-button_brand"
+              onclick="showModal()"
+              id="doneSettingsTitle"
+            >
               Done
             </button>
           </footer>
@@ -269,14 +294,14 @@
       <section
         role="dialog"
         tabindex="-1"
-        aria-labelledby="modal-heading-01"
+        aria-labelledby="modal-heading-02"
         aria-modal="true"
         aria-describedby="modal-content-id-1"
         class="slds-modal slds-fade-in-open"
       >
         <div class="slds-modal__container">
           <header class="slds-modal__header">
-            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+            <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">
               Language
             </h2>
             <p class="slds-m-top_x-small"></p>
@@ -287,23 +312,24 @@
           >
             <button
               class="slds-button slds-button_neutral"
-              onclick="showLanguageModal()"
+              onclick="changeLanguage('en')"
             >
               English / Englisch
             </button>
             <button
               class="slds-button slds-button_neutral"
-              onclick="showLanguageModal()"
+              onclick="changeLanguage('de')"
             >
               German / Deutsch
             </button>
             <div class="slds-p-vertical_medium"></div>
-            <p>More coming soon...</p>
+            <p id="moreComingSoonTitle">More coming soon...</p>
           </div>
           <footer class="slds-modal__footer">
             <button
               class="slds-button slds-button_brand"
               onclick="showLanguageModal()"
+              id="doneLanguageTitle"
             >
               Done
             </button>

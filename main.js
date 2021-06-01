@@ -42,11 +42,6 @@ function sendPowerData() {
       );
       if (this.responseText == "true") {
         document.getElementById("powerSwitch").checked = true;
-        document.getElementById("fwd_button").removeAttribute("disabled");
-        document.getElementById("lft_button").removeAttribute("disabled");
-        document.getElementById("rgt_button").removeAttribute("disabled");
-        document.getElementById("bwd_button").removeAttribute("disabled");
-        document.getElementById("slider-id-01").removeAttribute("disabled");
       } else if (this.responseText == "false") {
         document.getElementById("powerSwitch").checked = false;
       }
@@ -123,10 +118,83 @@ function startTime() {
   // add a zero in front of numbers<10
   m = checkTime(m);
   s = checkTime(s);
-  document.getElementById("time").innerHTML = "Current Time: " + h + ":" + m;
+  document.getElementById("time").innerHTML = h + ":" + m;
   timeVal = h + ":" + m + ":" + s;
   t = setTimeout(function () {
     startTime();
   }, 500);
 }
 startTime();
+
+var en_us = {
+  welcome: "Welcome",
+  title: "Mover Dashboard",
+  battery: "Battery Percentage 🔋",
+  workTime: "Work Time",
+  currentTime: "Current Time",
+  powerLabel: "Power",
+  powerStateOff: "Off",
+  powerStateOn: "On",
+  emergencyStop: "Emergency Stop",
+  settingsModal: "Settings",
+  updateSystemButton: "Update System",
+  languageButton: "Languages",
+  moreComing: "More coming soon...",
+  doneSettingButton: "Done",
+  doneLanguageButton: "Done",
+  languageModal: "Language",
+};
+var de_de = {
+  welcome: "Wilkommen",
+  title: "Mover Dashboard",
+  battery: "Batterieprozent 🔋",
+  workTime: "Arbeit Zeit",
+  currentTime: "Strom Zeit",
+  powerLabel: "Strom",
+  powerStateOff: "aus",
+  powerStateOn: "an",
+  emergencyStop: "Not-Halt",
+  settingsModal: "Einstellungen",
+  updateSystemButton: "System aktualisieren",
+  languageButton: "Sprachen",
+  moreComing: "Mehr kommt bald...",
+  doneSettingButton: "Fertig",
+  doneLanguageButton: "Fertig",
+  languageModal: "Sprache",
+};
+function changeLanguage(lang) {
+  if (lang == "en") {
+    var langChange = en_us;
+  } else if (lang == "de") {
+    var langChange = de_de;
+  }
+  //console.log(lang);
+  document.getElementById("mainTitle").innerHTML = langChange.title;
+  document.getElementById("batteryTitle").innerHTML = langChange.battery;
+  document.getElementById("currentTimeTitle").innerHTML =
+    langChange.currentTime;
+  document.getElementById("workTimeTitle").innerHTML = langChange.workTime;
+  document.getElementById("powerTitle").innerHTML = langChange.powerLabel;
+  document.getElementById("powerStateOnTitle").innerHTML =
+    langChange.powerStateOn;
+  document.getElementById("powerStateOffTitle").innerHTML =
+    langChange.powerStateOff;
+  document.getElementById("emergencyStopTitle").innerHTML =
+    langChange.emergencyStop;
+  document.getElementById("modal-heading-01").innerHTML =
+    langChange.settingsModal;
+  document.getElementById("updateSystemButtonTitle").innerHTML =
+    langChange.updateSystemButton;
+  document.getElementById("languageButtonTitle").innerHTML =
+    langChange.languageButton;
+  document.getElementById("moreComingSoonTitle").innerHTML =
+    langChange.moreComing;
+  document.getElementById("doneSettingsTitle").innerHTML =
+    langChange.doneSettingButton;
+  document.getElementById("modal-heading-02").innerHTML =
+    langChange.languageModal;
+  document.getElementById("doneLanguageTitle").innerHTML =
+    langChange.doneLanguageButton;
+  var modalLanguage = document.getElementById("modalLanguage");
+  modalLanguage.style.display = "none";
+}
