@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mover Dashboard</title>
     <link rel="stylesheet" type="text/css" href="min.css" />
+    <style>
+      [id*="powerSwitchButton"] {
+        zoom: 200%;
+      }
+    </style>
   </head>
   <body>
     <!-- Start End-->
@@ -35,7 +40,7 @@
           </div>
           <div class="slds-card__body slds-card__body_inner">
             <div class="demo-only demo-only--sizing slds-grid slds-wrap">
-              <div class="slds-size_3-of-3">
+              <div class="slds-size_1-of-3">
                 <div
                   class="
                     slds-box_x-small
@@ -43,56 +48,68 @@
                     slds-m-around_x-small
                   "
                 >
-                  🔋
-                </div>
-              </div>
-              <div class="slds-size_1-of-3 slds-align_absolute-center">
-                <div
-                  class="
-                    slds-box_x-small
-                    slds-text-align_center
-                    slds-m-around_x-small
-                  "
-                >
-                  <div class="slds-form-element">
-                    <label class="slds-checkbox_toggle slds-grid">
-                      <span class="slds-form-element__label slds-m-bottom_none"
-                        >Power</span
-                      >
-                      <input
-                        type="checkbox"
-                        name="checkbox-toggle-16"
-                        id="powerSwitch"
-                        aria-describedby="checkbox-toggle-16"
-                        onchange="sendPowerData()"
-                      />
-                      <span
-                        id="checkbox-toggle-16"
-                        class="slds-checkbox_faux_container"
-                        aria-live="assertive"
-                      >
-                        <span class="slds-checkbox_faux"></span>
-                        <span class="slds-checkbox_on">On</span>
-                        <span class="slds-checkbox_off">Off</span>
-                      </span>
-                    </label>
+                  <div
+                    class="
+                      slds-grid slds-grid_align-spread
+                      slds-p-bottom_x-small
+                    "
+                    id="progress-bar-label-id-6"
+                  >
+                    <span>Battery Percentage 🔋</span>
+                    <span aria-hidden="true">
+                      <strong></strong>
+                    </span>
+                  </div>
+                  <div
+                    class="slds-progress-bar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="25"
+                    aria-labelledby="progress-bar-label-id-6"
+                    role="progressbar"
+                  >
+                    <span class="slds-progress-bar__value" style="width: 25%">
+                      <span class="slds-assistive-text">Progress: 25%</span>
+                    </span>
                   </div>
                 </div>
               </div>
-              <div class="slds-size_2-of-3">
-                <div class="slds-form-element">
-                  <label class="slds-form-element__label" for="select-01"
-                    >Work Time</label
-                  >
-                  <div class="slds-form-element__control">
-                    <div class="slds-select_container">
-                      <select class="slds-select" id="select-01">
-                        <option value="">Select…</option>
-                        <option>Morning</option>
-                        <option>Afternoon</option>
-                        <option>Evening</option>
-                        <option>Night</option>
-                      </select>
+              <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
+                >
+                  <div
+                    id="time"
+                    class="slds-text-align_center slds-text-heading_small"
+                  ></div>
+                </div>
+              </div>
+              <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-horizontal_x-small
+                  "
+                >
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="select-01"
+                      >Work Time</label
+                    >
+                    <div class="slds-form-element__control">
+                      <div class="slds-select_container">
+                        <select class="slds-select" id="select-01">
+                          <option value="">Select…</option>
+                          <option>Morning</option>
+                          <option>Afternoon</option>
+                          <option>Evening</option>
+                          <option>Night</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -105,6 +122,43 @@
                     slds-m-around_x-small
                   "
                 ></div>
+              </div>
+
+              <div class="slds-size_3-of-3">
+                <div class="slds-size_1-of-3 slds-align_absolute-center">
+                  <div
+                    class="
+                      slds-box_x-small
+                      slds-text-align_center
+                      slds-m-around_x-small
+                    "
+                  >
+                    <div class="slds-form-element" id="powerSwitchButton">
+                      <label class="slds-checkbox_toggle slds-grid">
+                        <span
+                          class="slds-form-element__label slds-m-bottom_none"
+                          >Power</span
+                        >
+                        <input
+                          type="checkbox"
+                          name="checkbox-toggle-16"
+                          id="powerSwitch"
+                          aria-describedby="checkbox-toggle-16"
+                          onchange="sendPowerData()"
+                        />
+                        <span
+                          id="checkbox-toggle-16"
+                          class="slds-checkbox_faux_container"
+                          aria-live="assertive"
+                        >
+                          <span class="slds-checkbox_faux"></span>
+                          <span class="slds-checkbox_on">On</span>
+                          <span class="slds-checkbox_off">Off</span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="slds-size_3-of-3">
