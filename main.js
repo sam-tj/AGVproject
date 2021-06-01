@@ -72,6 +72,15 @@ function sendSpeedData(speed) {
   xhttp.send();
 }
 
+function showModal() {
+  var x = document.getElementById("modal");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 // setInterval(function () {
 //   // Call a function repetatively with 2 Second interval
 //   getData();
