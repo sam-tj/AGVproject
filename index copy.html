@@ -80,19 +80,41 @@
                 </div>
               </div>
               <div class="slds-size_2-of-3">
-                <div class="slds-form-element">
-                  <label class="slds-form-element__label" for="select-01"
-                    >Work Time</label
-                  >
-                  <div class="slds-form-element__control">
-                    <div class="slds-select_container">
-                      <select class="slds-select" id="select-01">
-                        <option value="">Select…</option>
-                        <option>Morning</option>
-                        <option>Afternoon</option>
-                        <option>Evening</option>
-                        <option>Night</option>
-                      </select>
+                <div
+                  class="
+                    slds-box slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
+                >
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="slider-id-01">
+                      <span class="slds-slider-label">
+                        <span class="slds-slider-label__label"
+                          >Speed Control</span
+                        >
+                      </span>
+                    </label>
+                    <div class="slds-form-element__control">
+                      <div class="slds-slider">
+                        <span class="slds-slider__value" aria-hidden="true"
+                          >Min</span
+                        >
+                        <input
+                          type="range"
+                          id="slider-id-01"
+                          class="slds-slider__range"
+                          min="0"
+                          max="10"
+                          step="5"
+                          value="0"
+                          onchange="sendSpeedData(this.value)"
+                          disabled=""
+                        />
+                        <span class="slds-slider__value" aria-hidden="true"
+                          >Max</span
+                        >
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -119,7 +141,108 @@
                   ...
                 </div>
               </div>
+              <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
+                ></div>
+              </div>
+              <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
+                >
+                  <button
+                    id="fwd_button"
+                    class="slds-button slds-button_brand slds-button_stretch"
+                    onclick="sendMovementData('fwd')"
+                    disabled=""
+                  >
+                    Forward
+                  </button>
+                </div>
+              </div>
 
+              <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
+                ></div>
+              </div>
+
+              <!-- <div class="slds-size_1-of-3">
+                <div
+                  class="slds-box_x-small slds-text-align_center slds-m-around_x-small"
+                ></div>
+              </div> -->
+              <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
+                >
+                  <button
+                    id="lft_button"
+                    class="slds-button slds-button_brand slds-button_stretch"
+                    onclick="sendMovementData('lft')"
+                    disabled=""
+                  >
+                    Left
+                  </button>
+                </div>
+              </div>
+              <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
+                >
+                  <button
+                    id="bwd_button"
+                    class="slds-button slds-button_brand slds-button_stretch"
+                    onclick="sendMovementData('bwd')"
+                    disabled=""
+                  >
+                    Backward
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="slds-size_1-of-3">
+                <div
+                  class="slds-box_x-small slds-text-align_center slds-m-around_x-small"
+                ></div>
+              </div> -->
+              <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
+                >
+                  <button
+                    id="rgt_button"
+                    class="slds-button slds-button_brand slds-button_stretch"
+                    onclick="sendMovementData('rgt')"
+                    disabled=""
+                  >
+                    Right
+                  </button>
+                </div>
+              </div>
               <div class="slds-size_3-of-3">
                 <div
                   class="
