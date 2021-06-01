@@ -3,10 +3,10 @@ var lastSpeed = 0;
 function sendMovementData(direction) {
   console.log("sendMovementData " + direction);
   lastDirection = direction;
-  document.getElementById("currentDirection").innerHTML =
-    "Current State " + lastDirection + " at speed " + lastSpeed;
   if (direction == "stop") {
     document.getElementById("powerSwitch").checked = false;
+    document.getElementById("currentDirection").innerHTML =
+      "Current State: Emergency Stop";
   }
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -25,14 +25,24 @@ function sendPowerData() {
   //console.log(
   //"sendPowerData " + document.getElementById("powerSwitch").checked
   //);
-  console.log(document.getElementById("slider-id-01").value);
 
   var state = document.getElementById("powerSwitch").checked;
+  if (state == true) {
+    document.getElementById("currentDirection").innerHTML =
+      "Current State: Moving";
+  } else if (state == false) {
+    document.getElementById("currentDirection").innerHTML =
+      "Current State: Not Moving";
+  }
   console.log(state);
   if (state == true) {
     document.getElementById("powerSwitch").checked = true;
+    document.getElementById("currentDirection").innerHTML =
+      "Current State: Moving";
   } else if (state == false) {
     document.getElementById("powerSwitch").checked = false;
+    document.getElementById("currentDirection").innerHTML =
+      "Current State: Not Moving";
   }
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -153,7 +163,7 @@ var de_de = {
   powerLabel: "Strom",
   powerStateOff: "aus",
   powerStateOn: "an",
-  emergencyStop: "Not-Halt",
+  emergencyStop: "Stop",
   settingsModal: "Einstellungen",
   updateSystemButton: "System aktualisieren",
   languageButton: "Sprachen",
