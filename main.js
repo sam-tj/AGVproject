@@ -81,6 +81,17 @@ function showModal() {
   }
 }
 
+function showLanguageModal() {
+  var x = document.getElementById("modalLanguage");
+  var modal = document.getElementById("modal");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    modal.style.display = "none";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 // setInterval(function () {
 //   // Call a function repetatively with 2 Second interval
 //   getData();
