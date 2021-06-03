@@ -115,16 +115,31 @@
                       id="workTimeTitle"
                       class="slds-form-element__label"
                       for="select-01"
-                      >Work Time</label
+                      ><abbr class="slds-required" title="required">* </abbr>
+                      Work Time</label
                     >
+
                     <div class="slds-form-element__control">
                       <div class="slds-select_container">
-                        <select class="slds-select" id="select-01">
-                          <option value="">Select…</option>
-                          <option>Morning by 8 am</option>
-                          <option>Afternoon by 12 pm</option>
-                          <option>Evening by 4 pm</option>
-                          <option>Night by 8 pm</option>
+                        <select
+                          class="slds-select"
+                          id="select-01"
+                          required=""
+                          onchange="onSelectorChange(value)"
+                        >
+                          <option value="" id="select-01-op-00">Select…</option>
+                          <option id="select-01-op-01" value="1">
+                            Morning by 8 am
+                          </option>
+                          <option id="select-01-op-02" value="2">
+                            Afternoon by 12 pm
+                          </option>
+                          <option id="select-01-op-03" value="3">
+                            Evening by 4 pm
+                          </option>
+                          <option id="select-01-op-04" value="4">
+                            Night by 8 pm
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -162,6 +177,7 @@
                           name="checkbox-toggle-16"
                           id="powerSwitch"
                           aria-describedby="checkbox-toggle-16"
+                          disabled=""
                           onchange="sendPowerData()"
                         />
                         <span
@@ -220,6 +236,7 @@
                     class="
                       slds-button slds-button_destructive slds-button_stretch
                     "
+                    disabled=""
                     onclick="sendMovementData('stop')"
                   >
                     Emergency Stop
@@ -344,7 +361,7 @@
     <!-- Footer Start -->
     <footer id="footer">
       <p style="text-align: center; font-size: medium">
-        © Sameer Tuteja -- 2021
+        © || Sameer Tuteja || 2021
       </p>
     </footer>
     <!-- Footer End-->
