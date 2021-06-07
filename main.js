@@ -1,5 +1,7 @@
 var lastDirection = "...";
 var timeVal = "";
+var timeSelectedByUser = 0;
+var userCommandTracker = "Time Stamp \tSchedule Selected \tCommand\n\n";
 
 var en_us = {
   welcome: "Welcome",
@@ -77,6 +79,7 @@ function sendMovementData(direction) {
 }
 
 function onSelectorChange(value) {
+  timeSelectedByUser = value;
   console.log(value);
   if (value > 0) {
     document.getElementById("powerSwitch").removeAttribute("disabled");
@@ -89,17 +92,31 @@ function onSelectorChange(value) {
 
 function sendPowerData() {
   var state = document.getElementById("powerSwitch").checked;
-  console.log(state);
+  console.log(userCommandTracker);
   if (state == true) {
     document.getElementById("powerSwitch").checked = true;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_moving;
     document.getElementById("emergencyStopTitle").removeAttribute("disabled");
+    userCommandTracker +=
+      timeVal +
+      " \t" +
+      document.getElementById("select-01").options[timeSelectedByUser].text +
+      " \t" +
+      document.getElementById("checkbox-toggle-16").innerText +
+      "\n";
   } else if (state == false) {
     document.getElementById("powerSwitch").checked = false;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_not_moving;
     document.getElementById("emergencyStopTitle").setAttribute("disabled", "");
+    userCommandTracker +=
+      timeVal +
+      " \t" +
+      document.getElementById("select-01").options[timeSelectedByUser].text +
+      " \t" +
+      document.getElementById("checkbox-toggle-16").innerText +
+      "\n";
   }
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -135,6 +152,21 @@ function showLanguageModal() {
   }
 }
 
+function saveDataToFile() {
+  var element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(userCommandTracker)
+  );
+  element.setAttribute("download", "yourData.txt");
+
+  element.style.display = "none";
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 // setInterval(function () {
 //   // Call a function repetatively with 2 Second interval
 //   getData();
