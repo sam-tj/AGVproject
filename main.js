@@ -3,6 +3,7 @@ var timeVal = "";
 var timeValHours = 0;
 var timeSelectedByUser = 0;
 var userCommandTracker = "Time Stamp \tSchedule Selected \tCommand\n\n";
+var voiceAssist = true;
 
 var en_us = {
   welcome: "Welcome",
@@ -100,6 +101,7 @@ recognition.onresult = function (event) {
     sendPowerData();
   }
 };
+
 function voiceActivate() {
   //if (listening == true) {
   //   recognition.stop();
@@ -147,10 +149,50 @@ function onSelectorChange(value) {
     // document.getElementById("emergencyStopTitle").setAttribute("disabled", "");
   }
 }
+function voiceAssistButton() {
+  document.getElementById("voiceAssistActiveTitle").innerHTML =
+    "Voice Assist is inactive 🔇";
+  voiceAssist = !voiceAssist;
+  if (voiceAssist == true) {
+    document.getElementById("voiceAssistActiveTitle").innerHTML =
+      "Voice Assist is Active 🔊";
+    document
+      .getElementById("voiceAssistTitle")
+      .classList.add("slds-text-color_success");
+  } else {
+    document.getElementById("voiceAssistActiveTitle").innerHTML =
+      "Voice Assist is inactive 🔇";
+    document
+      .getElementById("voiceAssistTitle")
+      .classList.remove("slds-text-color_success");
+  }
+  console.log(voiceAssist);
+  document
+    .getElementById("voiceAssistTitle")
+    .classList.toggle("slds-button_success");
+}
+function voiceOut(value) {
+  if ("speechSynthesis" in window) {
+    if (voiceAssist == true) {
+      var msg = new SpeechSynthesisUtterance();
+      if (value == true) {
+        msg.text = "Powering on the mower";
+        window.speechSynthesis.speak(msg);
+      } else if (value == false) {
+        msg.text = "Powering off the mower";
+        window.speechSynthesis.speak(msg);
+      }
+    }
+  } else {
+    // Speech Synthesis Not Supported 😣
+    console.log("Sorry, your browser doesn't support text to speech!");
+  }
+}
 
 function sendPowerData() {
   var state = document.getElementById("powerSwitch").checked;
   if (state == true) {
+    voiceOut(true);
     document.getElementById("powerSwitch").checked = true;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_moving;
@@ -163,6 +205,7 @@ function sendPowerData() {
       document.getElementById("checkbox-toggle-16").innerText +
       "\n";
   } else if (state == false) {
+    voiceOut(false);
     document.getElementById("powerSwitch").checked = false;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_not_moving;
