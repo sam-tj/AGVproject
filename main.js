@@ -64,6 +64,9 @@ const recognition = new webkitSpeechRecognition();
 recognition.continuous = false;
 recognition.interimResults = false;
 recognition.onresult = function (event) {
+  document
+    .getElementById("voiceActivateTitle")
+    .classList.toggle("slds-button_success");
   let result = "";
   for (let i = event.resultIndex; i < event.results.length; i++) {
     result += event.results[i][0].transcript;
@@ -105,6 +108,9 @@ function voiceActivate() {
   //} else {
   // button.innerText = "Press to Stop";
   recognition.start();
+  document
+    .getElementById("voiceActivateTitle")
+    .classList.toggle("slds-button_success");
   // }
 }
 
