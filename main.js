@@ -138,7 +138,7 @@ function sendMovementData(direction) {
 
 function onSelectorChange(value) {
   timeSelectedByUser = value;
-  console.log(value);
+  //console.log(value);
   if (value > 0) {
     document.getElementById("powerSwitch").removeAttribute("disabled");
   } else {
@@ -157,16 +157,16 @@ function voiceAssistButton() {
     document.getElementById("voiceAssistActiveTitle").innerHTML =
       "Voice Assist is Active 🔊";
     document
-      .getElementById("voiceAssistTitle")
+      .getElementById("voiceAssistActiveTitle")
       .classList.add("slds-text-color_success");
   } else {
     document.getElementById("voiceAssistActiveTitle").innerHTML =
       "Voice Assist is inactive 🔇";
     document
-      .getElementById("voiceAssistTitle")
+      .getElementById("voiceAssistActiveTitle")
       .classList.remove("slds-text-color_success");
   }
-  console.log(voiceAssist);
+  //console.log(voiceAssist);
   document
     .getElementById("voiceAssistTitle")
     .classList.toggle("slds-button_success");
@@ -219,7 +219,7 @@ function sendPowerData() {
       "\n";
   }
 
-  console.log(userCommandTracker);
+  //console.log(userCommandTracker);
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
