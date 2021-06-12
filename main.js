@@ -1,5 +1,6 @@
 var lastDirection = "...";
 var timeVal = "";
+var timeValHours = 0;
 var timeSelectedByUser = 0;
 var userCommandTracker = "Time Stamp \tSchedule Selected \tCommand\n\n";
 
@@ -56,7 +57,56 @@ var de_de = {
   selectOption04: "Nacht um 20 Uhr",
 };
 
+var listening = false;
 var langChange = en_us;
+
+const recognition = new webkitSpeechRecognition();
+recognition.continuous = false;
+recognition.interimResults = false;
+recognition.onresult = function (event) {
+  let result = "";
+  for (let i = event.resultIndex; i < event.results.length; i++) {
+    result += event.results[i][0].transcript;
+  }
+  if (result.includes("turn on")) {
+    if (timeValHours >= 8 && timeValHours < 12) {
+      timeSelectedByUser = 1;
+      document.getElementById("select-01").value = 1;
+    } else if (timeValHours >= 12 && timeValHours < 16) {
+      timeSelectedByUser = 2;
+      document.getElementById("select-01").value = 2;
+    } else if (timeValHours >= 16 && timeValHours < 20) {
+      timeSelectedByUser = 3;
+      document.getElementById("select-01").value = 3;
+    } else if (
+      (timeValHours >= 20 && timeValHours < 24) ||
+      (timeValHours >= 0 && timeValHours < 8)
+    ) {
+      timeSelectedByUser = 4;
+      document.getElementById("select-01").value = 4;
+    }
+
+    document.getElementById("powerSwitch").removeAttribute("disabled");
+    document.getElementById("powerSwitch").checked = true;
+    sendPowerData();
+  }
+  if (result.includes("turn off")) {
+    document.getElementById("select-01").value = 0;
+    document.getElementById("powerSwitch").checked = false;
+    document.getElementById("powerSwitch").setAttribute("disabled", "");
+    sendPowerData();
+  }
+};
+function voiceActivate() {
+  //if (listening == true) {
+  //   recognition.stop();
+  // button.innerText = "Press to Activate Voice Command";
+  // content.innerText = "";
+  //} else {
+  // button.innerText = "Press to Stop";
+  recognition.start();
+  // }
+}
 
 function sendMovementData(direction) {
   lastDirection = direction;
@@ -84,20 +134,21 @@ function onSelectorChange(value) {
   if (value > 0) {
     document.getElementById("powerSwitch").removeAttribute("disabled");
   } else {
+    document.getElementById("currentDirection").innerHTML =
+      langChange.currenttStateOfBot_not_moving;
     document.getElementById("powerSwitch").checked = false;
     document.getElementById("powerSwitch").setAttribute("disabled", "");
-    document.getElementById("emergencyStopTitle").setAttribute("disabled", "");
+    // document.getElementById("emergencyStopTitle").setAttribute("disabled", "");
   }
 }
 
 function sendPowerData() {
   var state = document.getElementById("powerSwitch").checked;
-  console.log(userCommandTracker);
   if (state == true) {
     document.getElementById("powerSwitch").checked = true;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_moving;
-    document.getElementById("emergencyStopTitle").removeAttribute("disabled");
+    // document.getElementById("emergencyStopTitle").removeAttribute("disabled");
     userCommandTracker +=
       timeVal +
       " \t" +
@@ -109,7 +160,7 @@ function sendPowerData() {
     document.getElementById("powerSwitch").checked = false;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_not_moving;
-    document.getElementById("emergencyStopTitle").setAttribute("disabled", "");
+    // document.getElementById("emergencyStopTitle").setAttribute("disabled", "");
     userCommandTracker +=
       timeVal +
       " \t" +
@@ -118,6 +169,9 @@ function sendPowerData() {
       document.getElementById("checkbox-toggle-16").innerText +
       "\n";
   }
+
+  console.log(userCommandTracker);
+
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -199,6 +253,7 @@ function startTime() {
   m = checkTime(m);
   s = checkTime(s);
   document.getElementById("time").innerHTML = h + ":" + m;
+  timeValHours = h;
   timeVal = h + ":" + m + ":" + s;
   t = setTimeout(function () {
     startTime();
@@ -223,8 +278,8 @@ function changeLanguage(lang) {
     langChange.powerStateOn;
   document.getElementById("powerStateOffTitle").innerHTML =
     langChange.powerStateOff;
-  document.getElementById("emergencyStopTitle").innerHTML =
-    langChange.emergencyStop;
+  // document.getElementById("emergencyStopTitle").innerHTML =
+  // langChange.emergencyStop;
   document.getElementById("modal-heading-01").innerHTML =
     langChange.settingsModal;
   document.getElementById("updateSystemButtonTitle").innerHTML =
