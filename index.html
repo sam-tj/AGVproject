@@ -48,16 +48,38 @@
           </div>
           <div class="slds-card__body slds-card__body_inner">
             <div class="demo-only demo-only--sizing slds-grid slds-wrap">
-              <div class="slds-size_3-of-3">
+              <div class="slds-size_2-of-3">
+                <div class="slds-box_x-small slds-m-around_x-small">
+                  <button
+                    class="
+                      slds-button
+                      slds-text-color_weak slds-text-color_success
+                    "
+                    onclick="voiceAssistButton()"
+                    id="voiceAssistActiveTitle"
+                  >
+                    Voice Assist is Active 🔊
+                  </button>
+                </div>
+              </div>
+              <div class="slds-size_1-of-3">
                 <div
-                  id="voiceAssistActiveTitle"
                   class="
                     slds-box_x-small
+                    slds-text-align_center
                     slds-m-around_x-small
-                    slds-text-color_weak slds-text-color_success
                   "
                 >
-                  Voice Assist is Active 🔊
+                  <div
+                    id="currentTimeTitle"
+                    class="slds-text-align_center slds-text-heading_small"
+                  >
+                    Current Time
+                  </div>
+                  <div
+                    id="time"
+                    class="slds-text-align_center slds-text-heading_small"
+                  ></div>
                 </div>
               </div>
               <div class="slds-size_1-of-3">
@@ -101,6 +123,15 @@
                     slds-text-align_center
                     slds-m-around_x-small
                   "
+                ></div>
+              </div>
+              <!-- <div class="slds-size_1-of-3">
+                <div
+                  class="
+                    slds-box_x-small
+                    slds-text-align_center
+                    slds-m-around_x-small
+                  "
                 >
                   <div
                     id="currentTimeTitle"
@@ -113,7 +144,7 @@
                     class="slds-text-align_center slds-text-heading_small"
                   ></div>
                 </div>
-              </div>
+              </div> -->
               <div class="slds-size_1-of-3">
                 <div
                   class="
