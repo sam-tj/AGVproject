@@ -187,6 +187,15 @@ function voiceOut(value) {
     console.log("Sorry, your browser doesn't support text to speech!");
   }
 }
+function checkPin() {
+  if (document.getElementById("pin").value == "00100") {
+    console.log(document.getElementById("pin").value);
+    var x = document.getElementById("modalPIN");
+    var y = document.getElementById("restBody");
+    y.style.display = "block";
+    x.style.display = "none";
+  }
+}
 
 function sendPowerData() {
   var state = document.getElementById("powerSwitch").checked;

@@ -13,8 +13,20 @@
     </style>
   </head>
   <body>
+    <div
+      id="modalPIN"
+      class="slds-grid slds-grid_vertical-align-center slds-grid_align-center"
+      style="height: 95vh"
+    >
+      <form>
+        <label for="fname">PIN</label>
+        <input type="password" id="pin" /><br /><br />
+      </form>
+
+      <button onclick="checkPin()">submit</button>
+    </div>
     <!-- Start End-->
-    <div class="slds-scope" style="height: 95vh">
+    <div id="restBody" class="slds-scope" style="display: none; height: 95vh">
       <div
         class="slds-grid slds-grid_vertical-align-center slds-grid_align-center"
         style="height: 100%"
