@@ -142,8 +142,7 @@ function onSelectorChange(value) {
   if (value > 0) {
     document.getElementById("powerSwitch").removeAttribute("disabled");
   } else {
-    document.getElementById("currentDirection").innerHTML =
-      langChange.currenttStateOfBot_not_moving;
+    document.getElementById("currentDirection").innerHTML = "...";
     document.getElementById("powerSwitch").checked = false;
     document.getElementById("powerSwitch").setAttribute("disabled", "");
     // document.getElementById("emergencyStopTitle").setAttribute("disabled", "");
@@ -193,6 +192,7 @@ function sendPowerData() {
   var state = document.getElementById("powerSwitch").checked;
   if (state == true) {
     voiceOut(true);
+    document.getElementById("select-01").setAttribute("disabled", "");
     document.getElementById("powerSwitch").checked = true;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_moving;
@@ -206,6 +206,8 @@ function sendPowerData() {
       "\n";
   } else if (state == false) {
     voiceOut(false);
+    document.getElementById("select-01").removeAttribute("disabled");
+    document.getElementById("select-01").value = 0;
     document.getElementById("powerSwitch").checked = false;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_not_moving;
