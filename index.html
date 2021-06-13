@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mover Dashboard</title>
+    <title>Mower Dashboard</title>
     <link rel="stylesheet" type="text/css" href="min.css" />
+    <link rel="stylesheet" type="text/css" href="animation.css" />
     <style>
       [id*="powerSwitchButton"] {
         zoom: 200%;
@@ -13,20 +14,62 @@
     </style>
   </head>
   <body>
+    <div id="modalPIN" >
     <div
-      id="modalPIN"
+      id=""
       class="slds-grid slds-grid_vertical-align-center slds-grid_align-center"
       style="height: 95vh"
     >
       <div class="">
-        <form style="padding-top: 10%">
-          <label for="fname">PIN</label>
-          <input type="password" id="pin" /><br /><br />
-        </form>
+        <div
+          class="
+            slds-text-heading_large
+            slds-text-align_center
+            slds-m-around_x-small
+          "
+        >
+          Hello!
+        </div>
+        <div
+          class="
+            slds-text-heading_medium
+            slds-text-align_center
+            slds-m-around_x-small
+          "
+        >
+          Nice to se you again.
+        </div>
+        <div
+          id="pinTextBox"
+          class="slds-form-element slds-text-align_center slds-m-around_x-small"
+        >
+          <label class="slds-form-element__label" for="fpin">
+            <abbr class="slds-required" title="required">* </abbr>PIN</label
+          >
+          <div class="slds-form-element__control">
+            <input
+              type="password"
+              id="pin"
+              placeholder="Please enter your PIN"
+              required=""
+              class="slds-input"
+            />
+          </div>
+        </div>
+        <button
+        id="pinSubmitTitle"
+          class="
+            slds-text-align_center
+            slds-m-around_x-small
+            slds-button slds-button_neutral
+            aria-disabled="true"
+          "
+          onclick="checkPin()"
+        >
+          Submit
+        </button>
       </div>
-      <div class="">
-        <button onclick="checkPin()">submit</button>
-      </div>
+    </div>
     </div>
     <!-- Start End-->
     <div id="restBody" class="slds-scope" style="display: none; height: 95vh">
@@ -48,7 +91,7 @@
                     slds-text-heading_large
                   "
                 >
-                  <span id="mainTitle">Mover Dashboard</span>
+                  <span id="mainTitle">Mower Dashboard</span>
                 </h2>
               </div>
               <div class="slds-no-flex">
@@ -225,11 +268,11 @@
                       slds-m-around_x-small
                     "
                   >
-                    <div class="slds-form-element" id="powerSwitchButton">
+                    <div class="slds-form-element" onclick="powerButtonDisablePressed()"id="powerSwitchButton">
                       <label class="slds-checkbox_toggle slds-grid">
                         <span
                           id="powerTitle"
-                          class="slds-form-element__label slds-m-bottom_none"
+                          class="slds-form-element__label slds-m-bottom_none"                          
                           >Power</span
                         >
                         <input
@@ -238,7 +281,7 @@
                           id="powerSwitch"
                           aria-describedby="checkbox-toggle-16"
                           disabled=""
-                          onchange="sendPowerData()"
+                          onchange="sendPowerData()"                          
                         />
                         <span
                           id="checkbox-toggle-16"
@@ -381,7 +424,14 @@
             <div class="slds-p-vertical_medium"></div>
             <p id="moreComingSoonTitle">More coming soon...</p>
           </div>
-          <footer class="slds-modal__footer">
+          <footer class="slds-modal__footer slds-modal__footer_directional">
+            <button
+              class="slds-button slds-button_neutral"
+              onclick="logoutButton()"
+              id="logoutButtonTitle"
+            >
+              Logout
+            </button>
             <button
               class="slds-button slds-button_brand"
               onclick="showModal()"

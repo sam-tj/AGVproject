@@ -22,8 +22,8 @@ var en_us = {
   doneSettingButton: "Done",
   doneLanguageButton: "Done",
   languageModal: "Language",
-  currenttStateOfBot_moving: "Current State: Moving",
-  currenttStateOfBot_not_moving: "Current State: Not Moving",
+  currenttStateOfBot_moving: "Current State: Mowing",
+  currenttStateOfBot_not_moving: "Current State: Not Mowing",
   currenttStateOfBot_emergency: "Current State: Emergency Stop",
   selectOption00: "Select...",
   selectOption01: "Morning by 8 am",
@@ -48,8 +48,8 @@ var de_de = {
   doneSettingButton: "Fertig",
   doneLanguageButton: "Fertig",
   languageModal: "Sprache",
-  currenttStateOfBot_moving: "Aktuellen Zustand: Moving",
-  currenttStateOfBot_not_moving: "Aktuellen Zustand: Not Moving",
+  currenttStateOfBot_moving: "Aktuellen Zustand: Mowing",
+  currenttStateOfBot_not_moving: "Aktuellen Zustand: Not Mowing",
   currenttStateOfBot_emergency: "Aktuellen Zustand: Stop",
   selectOption00: "wählen...",
   selectOption01: "Morgens um 8 Uhr",
@@ -139,6 +139,7 @@ function sendMovementData(direction) {
 function onSelectorChange(value) {
   timeSelectedByUser = value;
   //console.log(value);
+  document.getElementById("select-01").classList.remove("slds-has-error");
   if (value > 0) {
     document.getElementById("powerSwitch").removeAttribute("disabled");
   } else {
@@ -187,20 +188,45 @@ function voiceOut(value) {
     console.log("Sorry, your browser doesn't support text to speech!");
   }
 }
+document
+  .getElementById("pinTextBox")
+  .addEventListener("keyup", function (event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      document.getElementById("pinSubmitTitle").click();
+    }
+  });
 function checkPin() {
   if (document.getElementById("pin").value == "00100") {
-    console.log(document.getElementById("pin").value);
+    //console.log(document.getElementById("pin").value);
     var x = document.getElementById("modalPIN");
     var y = document.getElementById("restBody");
+    y.classList.add("openModal");
     y.style.display = "block";
     x.style.display = "none";
+  } else {
+    document.getElementById("pinTextBox").classList.add("slds-has-error");
   }
+  document.getElementById("pin").value = "";
+}
+function logoutButton() {
+  var x = document.getElementById("modalPIN");
+  var y = document.getElementById("restBody");
+  showModal();
+  x.classList.add("openModal");
+  x.style.display = "block";
+  y.style.display = "none";
+}
+
+function powerButtonDisablePressed() {
+  document.getElementById("select-01").classList.add("slds-has-error");
 }
 
 function sendPowerData() {
   var state = document.getElementById("powerSwitch").checked;
   if (state == true) {
     voiceOut(true);
+
     document.getElementById("select-01").setAttribute("disabled", "");
     document.getElementById("powerSwitch").checked = true;
     document.getElementById("currentDirection").innerHTML =
@@ -217,6 +243,7 @@ function sendPowerData() {
     voiceOut(false);
     document.getElementById("select-01").removeAttribute("disabled");
     document.getElementById("select-01").value = 0;
+    onSelectorChange(0);
     document.getElementById("powerSwitch").checked = false;
     document.getElementById("currentDirection").innerHTML =
       langChange.currenttStateOfBot_not_moving;
