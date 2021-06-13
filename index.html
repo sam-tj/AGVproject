@@ -37,7 +37,7 @@
             slds-m-around_x-small
           "
         >
-          Nice to se you again.
+          Nice to see you again.
         </div>
         <div
           id="pinTextBox"
@@ -49,6 +49,9 @@
           <div class="slds-form-element__control">
             <input
               type="password"
+              pattern="[0-9]*" inputmode="numeric"
+              onsubmit="checkPin()"
+              
               id="pin"
               placeholder="Please enter your PIN"
               required=""
