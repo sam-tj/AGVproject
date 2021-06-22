@@ -4,6 +4,7 @@ var timeValHours = 0;
 var timeSelectedByUser = 0;
 var userCommandTracker = "Time Stamp \tSchedule Selected \tCommand\n\n";
 var voiceAssist = true;
+var audioLang = "en-US";
 
 var en_us = {
   welcome: "Welcome",
@@ -30,6 +31,7 @@ var en_us = {
   selectOption02: "Afternoon by 12 pm",
   selectOption03: "Evening by 4 pm",
   selectOption04: "Night by 8 pm",
+  audioLang: "en-US",
 };
 var de_de = {
   welcome: "Wilkommen",
@@ -56,6 +58,7 @@ var de_de = {
   selectOption02: "Nachmittag um 12 Uhr",
   selectOption03: "Abends um 16 Uhr",
   selectOption04: "Nacht um 20 Uhr",
+  audioLang: "de-DE",
 };
 
 var listening = false;
@@ -175,6 +178,7 @@ function voiceOut(value) {
   if ("speechSynthesis" in window) {
     if (voiceAssist == true) {
       var msg = new SpeechSynthesisUtterance();
+      speechSynthesisUtteranceInstance.lang = audioLang;
       if (value == true) {
         msg.text = "Powering on the mower";
         window.speechSynthesis.speak(msg);
