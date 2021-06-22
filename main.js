@@ -212,7 +212,7 @@ function notificationButton() {
   if (Notification.permission === "granted") {
     notificationActive = !notificationActive;
     if (notificationActive == true) {
-      console.log("here");
+      //console.log("here");
       document
         .getElementById("notificationTitle")
         .classList.remove("slds-text-color_success");
