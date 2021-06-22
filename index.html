@@ -81,6 +81,17 @@
         style="height: 100%"
       >
         <article class="slds-card" style="width: 90%; max-width: 700px">
+          
+          <div id="errorBarTop" class="slds-notify slds-notify_alert slds-alert_warning" role="alert"  style="display: none;">                       
+            <h2>You have not allowed Notifications. Please allow it from browser settings.
+            </h2>     
+            <!-- <div class="slds-notify__close">
+              <button class="slds-button slds-button_icon " onclick="askForApproval()" >
+                Try Again
+              </button>
+            </div>        -->
+          </div>
+
           <div class="slds-card__header slds-grid slds-border_bottom">
             <header
               class="slds-media slds-media_center slds-has-flexi-truncate"
@@ -329,7 +340,7 @@
                   "
                 ></div>
               </div>
-              <div class="slds-size_3-of-3" style="display: none;">
+              <div class="slds-size_3-of-3" >
                 <!-- <div
                   class="
                     slds-box_x-small
@@ -392,39 +403,70 @@
             class="slds-modal__content slds-p-around_medium"
             id="modal-content-id-1"
           >
-            <a href="firmware">
+          <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+              <a href="firmware">
+                <button
+                  class="slds-button slds-button_brand"
+                  id="updateSystemButtonTitle"
+                >
+                  Update System
+                </button>
+              </a>
+              <div class="slds-p-vertical_medium"></div>
               <button
                 class="slds-button slds-button_brand"
-                id="updateSystemButtonTitle"
+                onclick="showLanguageModal()"
+                id="languageButtonTitle"
               >
-                Update System
+                Languages
               </button>
-            </a>
-            <div class="slds-p-vertical_medium"></div>
-            <button
-              class="slds-button slds-button_brand"
-              onclick="showLanguageModal()"
-              id="languageButtonTitle"
-            >
-              Languages
-            </button>
-            <div class="slds-p-vertical_medium"></div>
-            <button
-              class="slds-button slds-button_brand"
-              onclick="saveDataToFile()"
-              id="downloadDataTitle"
-            >
-              Download Data
-            </button>
-            <div class="slds-p-vertical_medium"></div>
-            <button
+              <div class="slds-p-vertical_medium"></div>
+              <button
+                class="slds-button slds-button_brand"
+                onclick="saveDataToFile()"
+                id="downloadDataTitle"
+              >
+                Download Data
+              </button>
+              <div class="slds-p-vertical_medium"></div>
+            </div>
+            <div class="slds-col">
+              <button
               class="slds-button slds-button_neutral slds-button_success"
               onclick="voiceAssistButton()"
               id="voiceAssistTitle"
             >
-              Voice Assist
+              Voice Assist 🔊
             </button>
             <div class="slds-p-vertical_medium"></div>
+            <button
+              class="slds-button slds-button_neutral "
+              onclick="notificationButton()"
+              id="notificationTitle"
+              
+            >
+              Notifications 🔔
+            </button>
+            <div class="slds-p-vertical_medium"></div>
+
+            <button
+              class="slds-button slds-button_brand"
+              onclick="notificationsCat('test')"
+              id="notificationTestTitle"
+              style="display: none;"
+            >
+              Notification Test
+            </button>
+            <div class="slds-p-vertical_medium"></div>
+
+            </div>
+            
+          </div>
+            
+            
+            
+            
             <p id="moreComingSoonTitle">More coming soon...</p>
           </div>
           <footer class="slds-modal__footer slds-modal__footer_directional">

@@ -4,6 +4,7 @@ var timeValHours = 0;
 var timeSelectedByUser = 0;
 var userCommandTracker = "Time Stamp \tSchedule Selected \tCommand\n\n";
 var voiceAssist = true;
+var notificationActive = false;
 var audioLang = "en-US";
 
 var en_us = {
@@ -35,8 +36,13 @@ var en_us = {
   powerOnMover: "Powering on the mower",
   powerOffMover: "Powering off the mower",
   downloadDataButton: "Download Data",
-  voiceAssistButton: "Voice Assist",
+  voiceAssistButton: "Voice Assist 🔊",
   logoutButton: "Logout",
+  voiceAssistActiveTrue: "Voice Assist is Active 🔊",
+  voiceAssistActiveFalse: "Voice Assist is inactive 🔇",
+  notificationButton: "Notifications 🔔",
+  notificationTestButton: "Notification Test",
+  voiceCommandButton: "Voice Activate",
 };
 var de_de = {
   welcome: "Wilkommen",
@@ -69,6 +75,11 @@ var de_de = {
   downloadDataButton: "Daten herunterladen",
   voiceAssistButton: "Sprachassistent",
   logoutButton: "Ausloggen",
+  voiceAssistActiveTrue: "Sprachassistent ist aktiv 🔊",
+  voiceAssistActiveFalse: "Sprachassistent ist inaktiv 🔇",
+  notificationButton: "Benachrichtigung 🔔",
+  notificationTestButton: "Benachrichtigungstest",
+  voiceCommandButton: "Sprachaktivierung",
 };
 
 var listening = false;
@@ -163,18 +174,21 @@ function onSelectorChange(value) {
   }
 }
 function voiceAssistButton() {
-  document.getElementById("voiceAssistActiveTitle").innerHTML =
-    "Voice Assist is inactive 🔇";
+  // document.getElementById("voiceAssistActiveTitle").innerHTML =
+  //   langChange.voiceAssistActiveFalse;
+  //"Voice Assist is inactive 🔇";
   voiceAssist = !voiceAssist;
   if (voiceAssist == true) {
     document.getElementById("voiceAssistActiveTitle").innerHTML =
-      "Voice Assist is Active 🔊";
+      langChange.voiceAssistActiveTrue;
+    //"Voice Assist is Active 🔊";
     document
       .getElementById("voiceAssistActiveTitle")
       .classList.add("slds-text-color_success");
   } else {
     document.getElementById("voiceAssistActiveTitle").innerHTML =
-      "Voice Assist is inactive 🔇";
+      langChange.voiceAssistActiveFalse;
+    //"Voice Assist is inactive 🔇";
     document
       .getElementById("voiceAssistActiveTitle")
       .classList.remove("slds-text-color_success");
@@ -183,6 +197,59 @@ function voiceAssistButton() {
   document
     .getElementById("voiceAssistTitle")
     .classList.toggle("slds-button_success");
+}
+
+function notificationButton() {
+  if (Notification.permission === "granted") {
+    notificationActive = !notificationActive;
+    if (notificationActive == true) {
+      document
+        .getElementById("notificationTitle")
+        .classList.remove("slds-text-color_success");
+      notificationTestTitle.style.display = "block";
+    } else {
+      document
+        .getElementById("notificationTitle")
+        .classList.add("slds-text-color_success");
+
+      notificationTestTitle.style.display = "none";
+    }
+    document
+      .getElementById("notificationTitle")
+      .classList.toggle("slds-button_success");
+  } else {
+    askForApproval();
+  }
+}
+function askForApproval() {
+  Notification.requestPermission((permission) => {
+    if (permission === "granted") {
+      notificationActive = true;
+      errorBarTop.style.display = "none";
+      notificationButton();
+    } else {
+      errorBarTop.style.display = "block";
+      notificationActive = false;
+    }
+  });
+}
+function createNotification(title, text) {
+  const noti = new Notification(title, {
+    body: text,
+  });
+}
+function notificationsCat(value) {
+  if (value == "test") {
+    createNotification(
+      "Attention Needed",
+      "The mowing process is interrupted. Please check the device."
+    );
+  } else if (value == "alert") {
+    createNotification(
+      "Attention Needed",
+      "The mowing process is interrupted. Please check the device."
+    );
+  }
 }
 function voiceOut(value) {
   if ("speechSynthesis" in window) {
@@ -412,5 +479,12 @@ function changeLanguage(lang) {
     langChange.voiceAssistButton;
   document.getElementById("logoutButtonTitle").innerHTML =
     langChange.logoutButton;
+  document.getElementById("notificationTitle").innerHTML =
+    langChange.notificationButton;
+  document.getElementById("notificationTestTitle").innerHTML =
+    langChange.notificationTestButton;
+  document.getElementById("voiceActivateTitle").innerHTML =
+    langChange.voiceCommandButton;
+
   document.getElementById("modalLanguage").style.display = "none";
 }
