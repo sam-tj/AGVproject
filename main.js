@@ -96,7 +96,11 @@ recognition.onresult = function (event) {
   for (let i = event.resultIndex; i < event.results.length; i++) {
     result += event.results[i][0].transcript;
   }
-  if (result.includes("turn on") || result.includes("power on")) {
+  if (
+    result.includes("turn on") ||
+    result.includes("power on") ||
+    result.includes("switch on")
+  ) {
     if (timeValHours >= 8 && timeValHours < 12) {
       timeSelectedByUser = 1;
       document.getElementById("select-01").value = 1;
@@ -118,7 +122,12 @@ recognition.onresult = function (event) {
     document.getElementById("powerSwitch").checked = true;
     sendPowerData();
   }
-  if (result.includes("turn off") || result.includes("power off")) {
+  if (
+    result.includes("turn off") ||
+    result.includes("power off") ||
+    result.includes("power of") ||
+    result.includes("switch of")
+  ) {
     document.getElementById("select-01").value = 0;
     document.getElementById("powerSwitch").checked = false;
     document.getElementById("powerSwitch").setAttribute("disabled", "");
