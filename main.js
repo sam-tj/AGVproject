@@ -34,6 +34,9 @@ var en_us = {
   audioLang: "en-US",
   powerOnMover: "Powering on the mower",
   powerOffMover: "Powering off the mower",
+  downloadDataButton: "Download Data",
+  voiceAssistButton: "Voice Assist",
+  logoutButton: "Logout",
 };
 var de_de = {
   welcome: "Wilkommen",
@@ -63,6 +66,9 @@ var de_de = {
   audioLang: "de-DE",
   powerOnMover: "Strom an",
   powerOffMover: "Strom aus",
+  downloadDataButton: "Daten herunterladen",
+  voiceAssistButton: "Sprachassistent",
+  logoutButton: "Ausloggen",
 };
 
 var listening = false;
@@ -400,5 +406,11 @@ function changeLanguage(lang) {
   document.getElementById("select-01-op-04").innerHTML =
     langChange.selectOption04;
 
+  document.getElementById("downloadDataTitle").innerHTML =
+    langChange.downloadDataButton;
+  document.getElementById("voiceAssistTitle").innerHTML =
+    langChange.voiceAssistButton;
+  document.getElementById("logoutButtonTitle").innerHTML =
+    langChange.logoutButton;
   document.getElementById("modalLanguage").style.display = "none";
 }
