@@ -32,6 +32,8 @@ var en_us = {
   selectOption03: "Evening by 4 pm",
   selectOption04: "Night by 8 pm",
   audioLang: "en-US",
+  powerOnMover: "Powering on the mower",
+  powerOffMover: "Powering off the mower",
 };
 var de_de = {
   welcome: "Wilkommen",
@@ -59,6 +61,8 @@ var de_de = {
   selectOption03: "Abends um 16 Uhr",
   selectOption04: "Nacht um 20 Uhr",
   audioLang: "de-DE",
+  powerOnMover: "Strom an",
+  powerOffMover: "Strom aus",
 };
 
 var listening = false;
@@ -178,12 +182,12 @@ function voiceOut(value) {
   if ("speechSynthesis" in window) {
     if (voiceAssist == true) {
       var msg = new SpeechSynthesisUtterance();
-      speechSynthesisUtteranceInstance.lang = audioLang;
+      msg.lang = langChange.audioLang;
       if (value == true) {
-        msg.text = "Powering on the mower";
+        msg.text = langChange.powerOnMover;
         window.speechSynthesis.speak(msg);
       } else if (value == false) {
-        msg.text = "Powering off the mower";
+        msg.text = langChange.powerOffMover;
         window.speechSynthesis.speak(msg);
       }
     }
