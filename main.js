@@ -272,8 +272,8 @@ function createNotification(title, text) {
 function notificationsCat(value) {
   if (value == "test") {
     createNotification(
-      "Attention Needed",
-      "The mowing process is interrupted. Please check the device."
+      "Test Notification",
+      "If you received this Notification, then all works well."
     );
   } else if (value == "alert") {
     createNotification(
